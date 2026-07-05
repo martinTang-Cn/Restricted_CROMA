@@ -610,6 +610,8 @@ def create_loaders(args):
             patch_size=args.image_size,
             stride_ratio=args.stride_ratio,
             num_ratio=args.num_ratio,
+            output_size=128,
+            add_dist=True
         )
         val_set = WHUOptSarPatchDataset(
             root_dir=args.data_root,
@@ -617,6 +619,8 @@ def create_loaders(args):
             patch_size=args.image_size,
             stride_ratio=args.stride_ratio,
             num_ratio=1.0,
+            output_size=128,
+            add_dist=True
         )
     elif args.dataset == "bigearthnet":
         train_set = BigEarthNetDataset(

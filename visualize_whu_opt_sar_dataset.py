@@ -87,6 +87,7 @@ def main():
         patch_size=args.patch_size,
         output_size=args.output_size,
         normalize=not args.no_normalize,
+        add_dist=True
     )
 
     if len(dataset) == 0:
