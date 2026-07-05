@@ -544,7 +544,8 @@ def parse_args():
         default="/home/featurize/data",
         help="WHU 光学-SAR 数据根目录",
     )
-    parser.add_argument("--image_size", type=int, default=256)
+    parser.add_argument("--image_size", type=int, default=512)
+    parser.add_argument("--output_size", type=int, default=256)
     parser.add_argument("--vit_patch_size", type=int, default=8)
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--epochs", type=int, default=50)
@@ -610,7 +611,7 @@ def create_loaders(args):
             patch_size=args.image_size,
             stride_ratio=args.stride_ratio,
             num_ratio=args.num_ratio,
-            output_size=128,
+            output_size=args.output_size,
             add_dist=True
         )
         val_set = WHUOptSarPatchDataset(
@@ -619,7 +620,7 @@ def create_loaders(args):
             patch_size=args.image_size,
             stride_ratio=args.stride_ratio,
             num_ratio=1.0,
-            output_size=128,
+            output_size=args.output_size,
             add_dist=True
         )
     elif args.dataset == "bigearthnet":
