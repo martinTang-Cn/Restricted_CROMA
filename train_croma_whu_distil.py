@@ -546,6 +546,11 @@ def parse_args():
     )
     parser.add_argument("--image_size", type=int, default=512)
     parser.add_argument("--output_size", type=int, default=256)
+    parser.add_argument(
+        "--add_dist",
+        action="store_true",
+        help="制造未配准的数据集",
+    )
     parser.add_argument("--vit_patch_size", type=int, default=8)
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--epochs", type=int, default=50)
@@ -612,7 +617,7 @@ def create_loaders(args):
             stride_ratio=args.stride_ratio,
             num_ratio=args.num_ratio,
             output_size=args.output_size,
-            add_dist=True
+            add_dist=args.add_dist
         )
         val_set = WHUOptSarPatchDataset(
             root_dir=args.data_root,
@@ -621,7 +626,7 @@ def create_loaders(args):
             stride_ratio=args.stride_ratio,
             num_ratio=1.0,
             output_size=args.output_size,
-            add_dist=True
+            add_dist=args.add_dist
         )
     elif args.dataset == "bigearthnet":
         train_set = BigEarthNetDataset(
@@ -641,7 +646,7 @@ def create_loaders(args):
             patch_size=args.image_size,
             stride=args.image_size,
             output_size=args.output_size,
-            add_dist=True
+            add_dist=args.add_dist
         )
         val_set = Houston2013PatchDataset(
             root_dir=args.data_root,
@@ -649,7 +654,7 @@ def create_loaders(args):
             patch_size=args.image_size,
             stride=args.image_size,
             output_size=args.output_size,
-            add_dist=True
+            add_dist=args.add_dist
         )
 
     train_loader = DataLoader(
