@@ -640,12 +640,16 @@ def create_loaders(args):
             split="train",
             patch_size=args.image_size,
             stride=args.image_size,
+            output_size=args.output_size,
+            add_dist=True
         )
         val_set = Houston2013PatchDataset(
             root_dir=args.data_root,
             split="val",
             patch_size=args.image_size,
             stride=args.image_size,
+            output_size=args.output_size,
+            add_dist=True
         )
 
     train_loader = DataLoader(
